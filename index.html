@@ -21,6 +21,23 @@
 
         let physics = new Physics().drag();
 
+        let loopCheck = true;
+        let frames = 0;
+        function checkFrameRate ()
+        {
+          if ( loopCheck )
+          {
+            window.requestAnimationFrame( checkFrameRate );
+            frames++
+          }
+          timeout( .5, () =>
+          {
+            loopCheck = false;
+            physics.timeStep = 0.05 / ( frames / 30 );
+          } );
+        }
+        checkFrameRate();
+
         new Circle( 100, brown )
           .center()
           .addPhysics( { bounciness: .6 } );
