@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <title>ZIM-Puppet</title>
+
+    <!-- zimjs.com - JavaScript Canvas Framework -->
+    <script type="module">
+
+      import zim from "https://zimjs.org/cdn/018/zim";
+      import zim2 from "https://zimjs.org/cdn/018/zim_physics.js";
+
+      // See Docs under Frame for FIT, FILL, FULL, and TAG
+      new Frame( FIT, 1024, 768, "#5b321d", dark, ready );
+      function ready ()
+      {
+
+        // given F (Frame), S (Stage), W (width), H (height)
+        // put code here
+
+        let physics = new Physics().drag();
+
+        new Circle( 100, brown )
+          .center()
+          .addPhysics( { bounciness: .6 } );
+
+      } // end ready
+
+    </script>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+  </head>
+
+  <body></body>
+
+</html>
