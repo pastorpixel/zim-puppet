@@ -43,27 +43,45 @@
 
         let scaFac = .3;
 
-        let kopf = new Pic( "robbi_kopf.png" ).sca( scaFac ).centerReg().mov( 0, -200 ).addPhysics( false );
-        let body = new Pic( "robbi_body.png" ).sca( scaFac ).centerReg().mov( 0, -87 ).addPhysics( false );
-        let huefte = new Pic( "robbi_huefte.png" ).sca( scaFac ).centerReg().mov( 0, 11 ).addPhysics( false );
+        let kopf = new Pic( "robbi_kopf.png" ).sca( scaFac ).centerReg().mov( 0, -200 ).addPhysics();
+        let body = new Pic( "robbi_body.png" ).sca( scaFac ).centerReg().mov( 0, -87 ).addPhysics();
+        let huefte = new Pic( "robbi_huefte.png" ).sca( scaFac ).centerReg().mov( 0, 11 ).addPhysics();
 
-        let oSchenkelR = new Pic( "robbi_oSchenkel.png" ).sca( scaFac ).centerReg().mov( -50, 80 ).addPhysics( false );
-        let uSchenkelR = new Pic( "robbi_uSchenkel.png" ).sca( scaFac ).centerReg().mov( -50, 190 ).addPhysics( false );
-        let fussR = new Pic( "robbi_fuss.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( -60, 245 ).addPhysics( false );
+        let oSchenkelR = new Pic( "robbi_oSchenkel.png" ).sca( scaFac ).centerReg().mov( -50, 80 ).addPhysics();
+        let uSchenkelR = new Pic( "robbi_uSchenkel.png" ).sca( scaFac ).centerReg().mov( -50, 190 ).addPhysics();
+        let fussR = new Pic( "robbi_fuss.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( -60, 245 ).addPhysics();
 
-        let oSchenkelL = new Pic( "robbi_oSchenkel.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( 50, 80 ).addPhysics( false );
-        let uSchenkelL = new Pic( "robbi_uSchenkel.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( 50, 190 ).addPhysics( false );
-        let fussL = new Pic( "robbi_fuss.png" ).sca( scaFac ).centerReg().mov( 60, 245 ).addPhysics( false );
+        let oSchenkelL = new Pic( "robbi_oSchenkel.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( 50, 80 ).addPhysics();
+        let uSchenkelL = new Pic( "robbi_uSchenkel.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( 50, 190 ).addPhysics();
+        let fussL = new Pic( "robbi_fuss.png" ).sca( scaFac ).centerReg().mov( 60, 245 ).addPhysics();
 
+        let uArmR = new Pic( "robbi_uArm.png" ).sca( scaFac ).centerReg().mov( -63, 18 ).addPhysics();
+        let oArmR = new Pic( "robbi_oArm.png" ).sca( scaFac ).centerReg().mov( -60, -100 ).addPhysics();
+        let handR = new Pic( "robbi_hand.png" ).sca( scaFac ).centerReg().mov( -90, 98 ).addPhysics();
 
+        let uArmL = new Pic( "robbi_uArm.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( 63, 18 ).addPhysics();
+        let oArmL = new Pic( "robbi_oArm.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( 60, -100 ).addPhysics();
+        let handL = new Pic( "robbi_hand.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( 90, 98 ).addPhysics();
 
-        let uArmR = new Pic( "robbi_uArm.png" ).sca( scaFac ).centerReg().mov( -63, 18 ).addPhysics( false );
-        let oArmR = new Pic( "robbi_oArm.png" ).sca( scaFac ).centerReg().mov( -60, -100 ).addPhysics( false );
-        let handR = new Pic( "robbi_hand.png" ).sca( scaFac ).centerReg().mov( -90, 98 ).addPhysics( false );
+        physics.join( kopf, body, new Point( kopf.x, kopf.y + 50 ), null, null, null, "revolute" );
+        physics.join( body, huefte, new Point( body.x, body.y + 100 ), null, null, null, "revolute" );
 
-        let uArmL = new Pic( "robbi_uArm.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( 63, 18 ).addPhysics( false );
-        let oArmL = new Pic( "robbi_oArm.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( 60, -100 ).addPhysics( false );
-        let handL = new Pic( "robbi_hand.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( 90, 98 ).addPhysics( false );
+        physics.join( oArmR, body, new Point( oArmR.x, oArmR.y - 50 ), null, null, null, "revolute" );
+        physics.join( uArmR, oArmR, new Point( uArmR.x, uArmR.y - 60 ), null, null, null, "revolute" );
+        physics.join( handR, uArmR, new Point( handR.x + 25, handR.y - 15 ), null, null, null, "revolute" );
+
+        physics.join( oArmL, body, new Point( oArmL.x, oArmL.y - 50 ), null, null, null, "revolute" );
+        physics.join( uArmL, oArmL, new Point( uArmL.x, uArmL.y - 60 ), null, null, null, "revolute" );
+        physics.join( handL, uArmL, new Point( handL.x - 25, handL.y - 15 ), null, null, null, "revolute" );
+
+        physics.join( huefte, oSchenkelR, new Point( huefte.x - 50, huefte.y + 16 ), null, null, null, "revolute" );
+        physics.join( huefte, oSchenkelL, new Point( huefte.x + 50, huefte.y + 16 ), null, null, null, "revolute" );
+
+        physics.join( uSchenkelR, oSchenkelR, new Point( uSchenkelR.x, uSchenkelR.y - 30 ), null, null, null, "revolute" );
+        physics.join( uSchenkelL, oSchenkelL, new Point( uSchenkelL.x, uSchenkelL.y - 30 ), null, null, null, "revolute" );
+
+        physics.join( uSchenkelR, fussR, new Point( fussR.x + 10, fussR.y - 10 ), 90, -60, null, "revolute" );
+        physics.join( uSchenkelL, fussL, new Point( fussL.x - 10, fussL.y - 10 ), 90, -50, null, "revolute" );
 
 
       } // end ready
