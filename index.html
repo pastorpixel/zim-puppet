@@ -11,8 +11,11 @@
       import zim from "https://zimjs.org/cdn/018/zim";
       import zim2 from "https://zimjs.org/cdn/018/zim_physics.js";
 
+      let assets = [ "robbi_body.png", "robbi_fuss.png", "robbi_hand.png", "robbi_huefte.png", "robbi_kopf.png", "robbi_oArm.png", "robbi_uArm.png", "robbi_oSchenkel.png", "robbi_uSchenkel.png" ];
+      let path = "assets/"
+
       // See Docs under Frame for FIT, FILL, FULL, and TAG
-      new Frame( FIT, 1024, 768, "#5b321d", dark, ready );
+      new Frame( FIT, 1024, 768, "#5b321d", dark, ready, assets, path );
       function ready ()
       {
 
@@ -38,9 +41,30 @@
         }
         checkFrameRate();
 
-        new Circle( 100, brown )
-          .center()
-          .addPhysics( { bounciness: .6 } );
+        let scaFac = .3;
+
+        let kopf = new Pic( "robbi_kopf.png" ).sca( scaFac ).centerReg().mov( 0, -200 ).addPhysics( false );
+        let body = new Pic( "robbi_body.png" ).sca( scaFac ).centerReg().mov( 0, -87 ).addPhysics( false );
+        let huefte = new Pic( "robbi_huefte.png" ).sca( scaFac ).centerReg().mov( 0, 11 ).addPhysics( false );
+
+        let oSchenkelR = new Pic( "robbi_oSchenkel.png" ).sca( scaFac ).centerReg().mov( -50, 80 ).addPhysics( false );
+        let uSchenkelR = new Pic( "robbi_uSchenkel.png" ).sca( scaFac ).centerReg().mov( -50, 190 ).addPhysics( false );
+        let fussR = new Pic( "robbi_fuss.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( -60, 245 ).addPhysics( false );
+
+        let oSchenkelL = new Pic( "robbi_oSchenkel.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( 50, 80 ).addPhysics( false );
+        let uSchenkelL = new Pic( "robbi_uSchenkel.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( 50, 190 ).addPhysics( false );
+        let fussL = new Pic( "robbi_fuss.png" ).sca( scaFac ).centerReg().mov( 60, 245 ).addPhysics( false );
+
+
+
+        let uArmR = new Pic( "robbi_uArm.png" ).sca( scaFac ).centerReg().mov( -63, 18 ).addPhysics( false );
+        let oArmR = new Pic( "robbi_oArm.png" ).sca( scaFac ).centerReg().mov( -60, -100 ).addPhysics( false );
+        let handR = new Pic( "robbi_hand.png" ).sca( scaFac ).centerReg().mov( -90, 98 ).addPhysics( false );
+
+        let uArmL = new Pic( "robbi_uArm.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( 63, 18 ).addPhysics( false );
+        let oArmL = new Pic( "robbi_oArm.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( 60, -100 ).addPhysics( false );
+        let handL = new Pic( "robbi_hand.png" ).sca( scaFac * -1, scaFac ).centerReg().mov( 90, 98 ).addPhysics( false );
+
 
       } // end ready
 
