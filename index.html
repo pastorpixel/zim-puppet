@@ -83,6 +83,9 @@
         physics.join( uSchenkelR, fussR, new Point( fussR.x + 10, fussR.y - 10 ), 90, -60, null, "revolute" );
         physics.join( uSchenkelL, fussL, new Point( fussL.x - 10, fussL.y - 10 ), 90, -50, null, "revolute" );
 
+        let halter = new Circle( 30, "#713616" ).alp( .8 ).addTo().pos( W / 2, 150 ).reg( 0, 140 ).drag();
+        kopf.puppet( halter );
+
 
       } // end ready
 
